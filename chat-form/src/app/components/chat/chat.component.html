@@ -1,11 +1,16 @@
 <div class="container">
   <div class="message-container">
-    Messages
     <div class="message" *ngFor="let message of messages" [class.user-message]="message.user" [class.system-message]="!message.user">
       <div class="bubble">{{message.content}}</div> 
     </div>
   </div>
   <div class="input-container">
-    <app-form-field></app-form-field>
+    <app-form-field *ngIf="step === 0" type="text" [control]="form.controls.firstName" (nextStepEvent)="handleNewInfo($event)"></app-form-field>
+    <app-form-field *ngIf="step === 1" type="text" [control]="form.controls.lastName" (nextStepEvent)="handleNewInfo($event)"></app-form-field>
+    <app-form-field *ngIf="step === 2" type="email" [control]="form.controls.email" (nextStepEvent)="handleNewInfo($event)"></app-form-field>
+    <app-form-field *ngIf="step === 3" type="date" [control]="form.controls.dob" (nextStepEvent)="handleNewInfo($event)"></app-form-field>
+    <app-form-field *ngIf="step === 4" type="select" [control]="form.controls.gender" (nextStepEvent)="handleNewInfo($event)" [selectOptions]="genderOptions"></app-form-field>
+    <app-form-field *ngIf="step === 5" type="range" [control]="form.controls.satisfaction" (nextStepEvent)="handleNewInfo($event)"></app-form-field>
+    <button *ngIf="step === 6" mat-raised-button color="accent" (click)="handleSubmit()">Submit</button>
   </div>
 </div>

@@ -1,8 +1,9 @@
 .container {
-  height: 100vh;
+  height: 95vh;
   width: 50vw;
   display: flex;
   flex-direction: column;
+  padding-top: 5vh;
 }
 
 .message-container {
@@ -16,6 +17,7 @@
 .message {
   width: 100%;
   display: flex;
+  margin: 10px 0px;
 }
 
 .bubble {
