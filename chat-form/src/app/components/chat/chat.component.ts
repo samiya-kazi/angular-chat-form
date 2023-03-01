@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 interface Message {
@@ -14,7 +14,10 @@ interface Message {
 })
 
 
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
+  @ViewChild('scrollMe', {static: false}) scrollFrame: ElementRef | undefined;
+
+  private scrollContainer: any;
 
   step: number = 0;
   messages: Message[] = [];
@@ -37,26 +40,42 @@ export class ChatComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     dob: new FormControl('', [Validators.required]),
     gender: new FormControl('', Validators.required),
-    satisfaction: new FormControl('', Validators.required)
+    satisfaction: new FormControl(0, Validators.required)
   })
 
   constructor (private fb: FormBuilder) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.scrollContainer = this.scrollFrame!.nativeElement;
     this.addMessage(this.questions[this.step], false);
+  }
+
+  ngOnInit(): void {
   }
 
   addMessage (content: string, user: boolean) {
     this.messages.push({content, user});
+    this.scrollToBottom();
   }
 
   handleNewInfo (info: any) {
     this.addMessage(info.toString(), true);
     this.step++;
-    this.addMessage(this.questions[this.step], false);
+    setTimeout(() => {
+      this.addMessage(this.questions[this.step], false);
+    }, 500);
   }
 
   handleSubmit () {
     console.log(this.form.value);
+  }
+
+  scrollToBottom(): void {             
+    if(this.scrollContainer)
+    this.scrollContainer.scroll({
+      top: this.scrollContainer.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 }

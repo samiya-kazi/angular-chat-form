@@ -1,4 +1,4 @@
-<div class="input-container">
+<form class="input-container">
 
   <mat-form-field appearance="outline" *ngIf="type === 'text' || type === 'email'">
     <input matInput [type]="type" [formControl]="control" />
@@ -34,4 +34,4 @@
 
   <button mat-icon-button (click)="handleSend()"><mat-icon>send</mat-icon></button>
 
-</div>
+</form>

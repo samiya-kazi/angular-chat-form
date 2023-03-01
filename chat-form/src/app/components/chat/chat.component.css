@@ -8,6 +8,7 @@
 
 .message-container {
   flex-grow: 1;
+  overflow-y: auto;
 }
 
 .input-container {
@@ -18,6 +19,8 @@
   width: 100%;
   display: flex;
   margin: 10px 0px;
+  -webkit-animation: slidein-bottom 0.5s linear;
+  animation: slidein-bottom 0.5s linear;
 }
 
 .bubble {
@@ -36,4 +39,24 @@
 
 .system-message > .bubble {
   background-color: rgb(204, 204, 204);
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes slidein-bottom {
+  0% {
+    margin-top: 30px;
+    margin-bottom: -10px;
+    opacity: 0;
+  }
+  90% {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  100% {
+    opacity: 1;
+  }
 }
