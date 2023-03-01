@@ -7,3 +7,13 @@
 mat-form-field {
   flex-grow: 1;
 }
+
+.form-input {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.slider {
+  width: 75%;
+}

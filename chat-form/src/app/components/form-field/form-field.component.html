@@ -1,18 +1,18 @@
 <form class="input-container">
 
-  <mat-form-field appearance="outline" *ngIf="type === 'text' || type === 'email'">
+  <mat-form-field appearance="fill" *ngIf="type === 'text' || type === 'email'">
     <input matInput [type]="type" [formControl]="control" />
     <mat-error *ngIf="control.errors">Invalid input</mat-error>
   </mat-form-field>
 
-  <div *ngIf="type === 'range'">
-    <mat-slider min="0" max="10" step="1" showTickMarks discrete>
+  <div *ngIf="type === 'range'" class="form-input">
+    <mat-slider min="0" max="10" step="1" showTickMarks discrete class="slider">
       <input matSliderThumb [formControl]="control">
     </mat-slider>
     <mat-error *ngIf="control.errors">Invalid input</mat-error>
   </div>
 
-  <mat-form-field appearance="outline" *ngIf="type === 'select'">
+  <mat-form-field appearance="fill" *ngIf="type === 'select'">
     <mat-label>Gender</mat-label>
     <mat-select [formControl]="control">
       <mat-option *ngFor="let option of selectOptions" [value]="option">{{option}}</mat-option>
@@ -20,7 +20,7 @@
     <mat-error *ngIf="control.errors">Invalid input</mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" *ngIf="type === 'date'">
+  <mat-form-field appearance="fill" *ngIf="type === 'date'">
     <input matInput [matDatepicker]="datepicker" [formControl]="control">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
