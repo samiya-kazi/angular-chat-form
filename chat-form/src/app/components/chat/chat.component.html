@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="message-container">
+    Messages
+    <div class="message" *ngFor="let message of messages" [class.user-message]="message.user" [class.system-message]="!message.user">
+      <div class="bubble">{{message.content}}</div> 
+    </div>
+  </div>
+  <div class="input-container">
+    <app-form-field></app-form-field>
+  </div>
+</div>
