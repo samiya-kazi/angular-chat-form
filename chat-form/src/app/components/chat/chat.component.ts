@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 interface Message {
@@ -16,6 +16,16 @@ interface Message {
 
 export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollMe', {static: false}) scrollFrame: ElementRef | undefined;
+  @HostListener('window:message', ['$event'])
+  onEvent(ev: any) {
+    if (ev.data.event === 'calendly.event_scheduled') {
+      console.log('Scheduled done');
+      console.log(ev.data.payload);
+
+      this.step++;
+      this.addMessage(this.questions[this.step], false);
+    }
+  }
 
   private scrollContainer: any;
 
@@ -28,7 +38,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     'What is your date of birth?',
     'What gender are you?',
     'Please rate your level of satisfaction with our services.',
-    'Click submit to submit form.'
+    'Schedule a meeting on Calendly',
+    'Meeting scheduled. Click submit to submit form.'
   ];
 
   genderOptions = ['Male', 'Female', 'Other'];
@@ -79,3 +90,4 @@ export class ChatComponent implements OnInit, AfterViewInit {
     });
   }
 }
+  
