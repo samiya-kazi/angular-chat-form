@@ -1,13 +1,9 @@
 <div class="container">
   <div class="message-container" #scrollMe>
     <div class="message" *ngFor="let message of messages" [class.user-message]="message.user" [class.system-message]="!message.user">
-      <div class="bubble">
-        {{message.content}}
-        <p *ngIf="step === 6 && message.content === 'Schedule a meeting on Calendly' && message.user === false">
-          <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/samiya-kazi09'});return false;">Schedule a meeting</a>
-        </p>
-      </div> 
+      <div class="bubble">{{message.content}}</div> 
     </div>
+    <app-calendly-widget *ngIf="step === 6" [name]="form.value.firstName + ' ' + form.value.lastName" [email]="form.value.email!"></app-calendly-widget>
   </div>
   <div class="input-container" >
     <app-form-field *ngIf="step === 0" type="text" [control]="form.controls.firstName" (nextStepEvent)="handleNewInfo($event)"></app-form-field>

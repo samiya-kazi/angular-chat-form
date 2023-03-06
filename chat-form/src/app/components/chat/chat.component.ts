@@ -24,6 +24,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
       this.step++;
       this.addMessage(this.questions[this.step], false);
+    } else if (ev.data.event === 'calendly.date_and_time_selected') {
+      console.log(ev.data.payload);
     }
   }
 

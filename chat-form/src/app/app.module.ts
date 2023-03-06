@@ -15,12 +15,14 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormFieldComponent } from './components/form-field/form-field.component';
+import { CalendlyWidgetComponent } from './components/calendly-widget/calendly-widget.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
-    FormFieldComponent
+    FormFieldComponent,
+    CalendlyWidgetComponent
   ],
   imports: [
     BrowserModule,
